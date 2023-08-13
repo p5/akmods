@@ -1,9 +1,12 @@
 #Build from base, simpley because it's the smallest image
 ARG SOURCE_IMAGE="${SOURCE_IMAGE:-base}"
 ARG BASE_IMAGE="quay.io/fedora-ostree-desktops/${SOURCE_IMAGE}"
-ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-37}"
+ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION:-39}"
 
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION} AS builder
+
+ARG FEDORA_MAJOR_VERSION
+
 RUN ln -s /usr/bin/rpm-ostree /usr/bin/dnf
 COPY build*.sh /tmp
 COPY certs /tmp/certs
